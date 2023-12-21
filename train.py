@@ -30,7 +30,9 @@ from torch.distributed import init_process_group, destroy_process_group
 from model import GPTConfig, GPT
 import torch_xla.core.xla_model as xm
 import os
+import torch._dynamo
 
+torch._dynamo.config.suppress_errors = True
 
 def tpu_available():
     return os.environ["PJRT_DEVICE"] == "tpu"
